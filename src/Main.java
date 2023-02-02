@@ -5,5 +5,15 @@ public class Main {
 
         usuario1.start();
 
+        while (usuario1.isAlive()){
+            try {
+                usuario2.wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        usuario2.start();
+
     }
+
 }
