@@ -1,19 +1,9 @@
 public class Main {
     public static void main(String[] args) {
-        Thread usuario1 = new Cuenta();
-        Thread usuario2 = new Cuenta();
-
+        Cuenta cuenta = new Cuenta();
+        Thread usuario1 = new Thread(cuenta);
         usuario1.start();
-
-        while (usuario1.isAlive()){
-            try {
-                usuario2.wait();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        Thread usuario2 = new Thread(cuenta);
         usuario2.start();
-
     }
-
 }

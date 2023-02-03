@@ -1,22 +1,35 @@
+import java.util.ArrayList;
+
 public class Cuenta extends Thread{
     static int SALDO = 50;
+    ArrayList<String> usuarios = new ArrayList<>();
 
     public void run(){
-        do {
+        usuarios.add("Isabel");
+        usuarios.add("Fernando");
+        while (SALDO >= 0) {
             retirarDinero();
-        } while (SALDO <= 0);
+        }
+
 
     }
     public synchronized void retirarDinero(){
-        System.out.println(" va a retirar dinero");
-        try {
-            sleep(500);
-            SALDO -= 10;
-            System.out.println("Se han retirado 10€");
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        for (int i = 0; i < usuarios.size(); i++){
+            System.out.println(usuarios.get(i) + " va a retirar dinero");
+            try {
+                sleep(500);
+                SALDO -= 10;
+                System.out.println("Se han retirado 10€");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("SALDO ACTUAL: " + SALDO);
+
+            if (i == usuarios.size()){
+                i = 0;
+            }
+            notify();
         }
-        System.out.println("SALDO ACTUAL: " + SALDO);
-        notify();
+
     }
 }
