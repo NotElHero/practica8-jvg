@@ -1,10 +1,10 @@
 public class Main {
     public static void main(String[] args) {
-        Cuenta cuenta = new Cuenta();
+        int cantidadRetirada = 10;
 
-        Thread usuario1 = new Usuario(cuenta.retirarDinero(10));
+        Thread usuario1 = new Usuario(cantidadRetirada);
+        Thread usuario2 = new Usuario(cantidadRetirada);
         usuario1.start();
-        Thread usuario2 = new Usuario(cuenta.retirarDinero(10));
         usuario2.start();
     }
 }

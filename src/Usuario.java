@@ -1,10 +1,10 @@
 public class Usuario extends Thread{
-    public Usuario(int retirarDinero) {
-
+    int cantidadRetirada;
+    public Usuario(int cantidadRetirada) {
+        this.cantidadRetirada = cantidadRetirada;
     }
-
     public void run() {
-
+        Thread cuenta = new Cuenta(cantidadRetirada);
+        cuenta.start();
     }
-
 }
